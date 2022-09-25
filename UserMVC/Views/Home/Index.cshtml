@@ -1,0 +1,21 @@
+﻿@model IEnumerable<User>
+@{
+    ViewData["Title"] = "Home Page";
+    //ApplicationContext context = new(new Microsoft.EntityFrameworkCore.DbContextOptions<ApplicationContext>());
+    //var data = context.Users.ToList();
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to my web application</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>@User.Identity.Name</p>
+
+    <form method="post" asp-controller="Account" asp-action="Logout">
+        <input type="submit" value="Выход" />
+    </form>
+}
+

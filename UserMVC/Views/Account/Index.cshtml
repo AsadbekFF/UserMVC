@@ -1,0 +1,52 @@
+﻿@model UserMVC.ViewModel.EditViewModel
+@{
+    ViewBag.Title = "Список пользователей";
+}
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+@*<a asp-action="Create">Добавить пользователя</a>*@
+
+    @using(Html.BeginForm("Edit", "Users", FormMethod.Post))
+            {
+
+        <button class="btn" value="Delete" name="submit"><i class="fas fa-user-slash"></i> Delete</button>
+        <button class="btn" value="Block" name="submit"><i class="fas fa-lock"></i> Block</button>
+        <button class="btn" value="Unblock" name="submit"><i class="fas fa-lock-open"></i> Unblock</button>
+        <table class="table" border="1">
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Last login</td>
+                <td>Date of registration</td>
+                <td>Status</td>
+                <td style=""><input id="check" type="checkbox" /></td>
+            </tr>
+
+            @foreach (var user in ViewBag.Users)
+            {
+                <tr>
+
+                    @if (user.Blocked == true)
+                    {
+                        <td>@user.Id</td>
+                        <td>@user.Name</td>
+                        <td>@user.Email</td>
+                        <td>@user.LastLogin</td>
+                        <td>@user.DateOfRegistration</td>
+                        <td style="background-color: red">Blocked</td>
+                        <td style=""><input name="checkbox" id="check2" value="@user.Id" class="checkbox2" type="checkbox" /></td>
+                    }
+                    else
+                    {
+                        <td>@user.Id</td>
+                        <td>@user.Name</td>
+                        <td>@user.Email</td>
+                        <td>@user.LastLogin</td>
+                        <td>@user.DateOfRegistration</td>
+                        <td style="background-color: chartreuse">Active</td>
+                        <td style=""><input name="checkbox" value="@user.Id" class="checkbox2" id="check2" type="checkbox" /></td>
+                    }
+                </tr>
+            }
+        </table>
+            }
